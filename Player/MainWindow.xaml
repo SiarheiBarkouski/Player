@@ -1,0 +1,60 @@
+﻿<Window x:Class="Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"   
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Player by Serega" Background="Black" Height="366.372" Width="716.221">
+
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" ></ColumnDefinition>
+            <ColumnDefinition Width="auto" ></ColumnDefinition>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Menu Background="Black" Grid.ColumnSpan="8">
+            <MenuItem Name="miFile"  Header="File" FontSize="14" HorizontalAlignment="Center">
+                <MenuItem Name="miOpen"  Header="Open..." FontSize="14" HorizontalAlignment="Center" Background="Honeydew" Click="miOpen_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="miHelp" Header="Help" FontSize="14" HorizontalAlignment="Center" Grid.Column="1" Width="65" Click="Help_Click"></MenuItem>
+        </Menu>
+        
+        <MediaElement Name="meMain" Grid.Row="1"  Grid.ColumnSpan="9" Margin="5" MediaOpened="meMain_MediaOpened" MouseLeftButtonDown="meMain_MouseLeftButtonDown" MediaEnded="meMain_MediaEnded"/>
+
+        <Button Name="btnStart" Content="Start"  Grid.Row="2" Grid.Column="3" FontSize="18" Margin="10" Click="btnStart_Click"></Button>
+        <Button Name="btnPause" Content="Pause"  Grid.Row="2" Grid.Column="4" FontSize="18" Margin="10" Click="btnPause_Click"></Button>
+        <Button Name="btnStop" Content="Stop"  Grid.Row="2" Grid.Column="5" FontSize="18" Margin="10" Click="btnStop_Click"></Button>
+        <Slider Name="slVolume" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="2" Grid.Column="6" Maximum="1" Value="0.5" HorizontalAlignment="Left" Width="100" Margin="10,15,0,15" IsMoveToPointEnabled="True" ValueChanged="slVolume_ValueChanged" LargeChange="0.2" Height="21"/>
+
+        <Slider Name="slDuration" VerticalAlignment="Center" Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" Margin="10" Height="21" IsMoveToPointEnabled="True" PreviewMouseLeftButtonUp="slDuration_PreviewMouseLeftButtonUp" MouseMove="slDuration_MouseMove" AutoToolTipPlacement="TopLeft" ToolTipService.ShowDuration="60000" ToolTipService.InitialShowDelay="0">
+            <Slider.ToolTip>
+                <ToolTip Name="tt" Loaded="tt_Loaded">
+                    <Label Name="lbDuration" Foreground="White"></Label>
+                </ToolTip>
+            </Slider.ToolTip>
+        </Slider>
+
+        <TextBox Name="tbStart" Text="00:00:00" Grid.Row="3" FontSize="18" VerticalAlignment="Center" TextAlignment="Center" IsReadOnly="True"></TextBox>
+        <TextBox Name="tbEnd" Text="00:00:00" Grid.Row="3" Grid.Column="8" FontSize="18" VerticalAlignment="Center" TextAlignment="Center" IsReadOnly="True"></TextBox>
+
+        <Expander ExpandDirection="Left" Grid.Column="9" Grid.RowSpan="4" AllowDrop="True" Drop="Expander_Drop">
+            <Expander.Content>
+                <Grid>
+                    <ListBox Name="lbExpander" MinWidth="150" MouseDoubleClick="lbExpander_MouseDoubleClick"></ListBox>
+                </Grid>
+            </Expander.Content>
+        </Expander>
+    </Grid>
+</Window>
